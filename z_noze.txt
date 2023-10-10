@@ -1,2 +1,5 @@
 6-title of the invoice 
 7-invoice number for real this time ,concat 
+
+ For example the Quantity in the Invoice is Not a Decimal Number and
+ Some Prices Need the Two Decimal Number after the point
