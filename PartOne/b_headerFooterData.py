@@ -1,9 +1,8 @@
 import pyodbc
-from a_functions_LB import replaceHeaderFooterQuery, replaceRowsQuery
-
+from . import a_functions_LB
 
 def runRowQuery(docNumber):
-    rowQuery = replaceRowsQuery(str(docNumber))
+    rowQuery = a_functions_LB.replaceRowsQuery(str(docNumber))
     conn = pyodbc.connect("Driver={SQL Server};"
                           "Server=10.10.10.100;"
                           "Database=LB;"
@@ -16,7 +15,7 @@ def runRowQuery(docNumber):
 
 
 def runHeaderFooterQuery(docNumber):
-    headerfooterQuery = replaceHeaderFooterQuery(str(docNumber))
+    headerfooterQuery = a_functions_LB.replaceHeaderFooterQuery(str(docNumber))
     conn = pyodbc.connect("Driver={SQL Server};"
                           "Server=10.10.10.100;"
                           "Database=LB;"

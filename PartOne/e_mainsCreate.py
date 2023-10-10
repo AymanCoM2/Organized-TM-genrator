@@ -1,20 +1,20 @@
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from c_queryParser import rowsParsing, headerFooterParsing
-from g_lastTable import createLastTable, createLastTableEmpty
-
+from . import c_queryParser, g_lastTable
+import os 
 
 def createMainsPages(docNumber):
-    finalDataList = rowsParsing(docNumber)
-    headerList, footerList = headerFooterParsing(docNumber)
+    finalDataList = c_queryParser.rowsParsing(docNumber)
+    headerList, footerList = c_queryParser.headerFooterParsing(docNumber)
     chunk_size = 10
     data_chunks = [finalDataList[i:i + chunk_size]
                    for i in range(0, len(finalDataList), chunk_size)]
     file_names = []
 
     for i, chunk in enumerate(data_chunks):
-        document = Document('pt1.docx')
+        # document = Document('pt1.docx')
+        document = Document(os.path.join(os.path.dirname(__file__), 'pt1.docx'))
         style = document.styles['Normal']
         font = style.font
         font.name = 'Cascadia Code'
@@ -22,10 +22,10 @@ def createMainsPages(docNumber):
         font.rtl = True
         font.size = Pt(5)
         if len(chunk) < 7 and (i == len(data_chunks) - 1):
-            createLastTable(docNumber, chunk)
+            g_lastTable.createLastTable(docNumber, chunk)
             break
         elif len(chunk) == 10 and (i == len(data_chunks) - 1):
-            createLastTableEmpty(docNumber)
+            g_lastTable.createLastTableEmpty(docNumber)
             # Dont Break and Let It Continue Creating last Chunck
         elif (len(chunk) >= 7 and len(chunk) < 11) and (i == len(data_chunks) - 1):
             if len(document.tables) > 1:
@@ -55,7 +55,7 @@ def createMainsPages(docNumber):
                     print(
                         "The number of cells in the table does not match the length of headerList.")
 
-            createLastTableEmpty(docNumber)  # empty
+            g_lastTable.createLastTableEmpty(docNumber)  # empty
             file_name = f'main{i + 1}.docx'
             document.save(file_name)
             file_names.append(file_name)

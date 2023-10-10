@@ -1,12 +1,12 @@
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from c_queryParser import headerFooterParsing
+from . import c_queryParser
 from docx.shared import Pt
-
+import os
 
 def createHeaderAndFooter(docNumber):
-    headerList, footerList = headerFooterParsing(docNumber)
+    headerList, footerList = c_queryParser.headerFooterParsing(docNumber)
     document = Document('middle.docx')
     style = document.styles['Normal']
     font = style.font
@@ -40,7 +40,8 @@ def createHeaderAndFooter(docNumber):
 
 def createLastTable(docNumber, lastList):
     finalDataList = lastList
-    document = Document('pt3.docx')
+    # document = Document('pt3.docx')
+    document = Document(os.path.join(os.path.dirname(__file__), 'pt3.docx'))
     style = document.styles['Normal']
     font = style.font
     font.name = 'Cascadia Code'
@@ -64,8 +65,9 @@ def createLastTable(docNumber, lastList):
 
 
 def createLastTableEmpty(docNumber):
-    headerList, footerList = headerFooterParsing(docNumber)
-    document = Document('pt3.docx')
+    headerList, footerList = c_queryParser.headerFooterParsing(docNumber)
+    # document = Document('pt3.docx')
+    document = Document(os.path.join(os.path.dirname(__file__), 'pt3.docx'))
     style = document.styles['Normal']
     font = style.font
     font.name = 'Cascadia Code'

@@ -23,6 +23,7 @@ def add_page_numbers(input_pdf, output_pdf):
         pdf_writer.add_page(page)
     with open(output_pdf, 'wb') as output_file:
         pdf_writer.write(output_file)
+    return output_pdf
 
 
 def combineParts(fileNamesList):
@@ -38,4 +39,5 @@ def combineParts(fileNamesList):
     merged_pdf_path = "result.pdf"
     merger.write(merged_pdf_path)
     merger.close()
-    add_page_numbers(merged_pdf_path, "result_with_page_numbers.pdf")
+    fname = add_page_numbers(merged_pdf_path, "result_with_page_numbers.pdf")
+    return fname

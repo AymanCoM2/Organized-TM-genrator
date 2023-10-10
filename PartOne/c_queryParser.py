@@ -1,9 +1,8 @@
-from b_headerFooterData import runHeaderFooterQuery, runRowQuery
 from decimal import Decimal
-
+from . import b_headerFooterData
 
 def headerFooterParsing(docNumber):
-    headerFooterResult = runHeaderFooterQuery(docNumber)
+    headerFooterResult = b_headerFooterData.runHeaderFooterQuery(docNumber)
     hfDict = {}
     for item in headerFooterResult:
         _, description, company, code, _, start_date, end_date, primary_id, * \
@@ -67,7 +66,7 @@ def convert_to_rounded_string(value):
 
 def rowsParsing(docNumber):
     counter = 1
-    rowResult = runRowQuery(docNumber)
+    rowResult = b_headerFooterData.runRowQuery(docNumber)
     finalDataList = []
     for rRow in rowResult:
         internalList = [
