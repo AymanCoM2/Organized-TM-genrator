@@ -2,6 +2,8 @@ from PartOne import e_mainsCreate, f_merge
 from whatsApp import hideEveryThing, openBrowser, openWhatasppLinkAndSendMSG, handleUPload
 import shutil
 
+# ! CONEECT TO DB and Get the First DOC number That Has flase For invoiceSet
+
 # fileNamesList = e_mainsCreate.createMainsPages(576)
 # 4 pages Nearly
 fileNamesList = e_mainsCreate.createMainsPages(5)
@@ -15,7 +17,6 @@ try:
     print(f"Moved {finalFileName} to {destination_folder}")
 except Exception as e:
     print(f"Error moving {finalFileName}: {e}")
-
 
 # ---------------------------------------------
 hideEveryThing()

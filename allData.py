@@ -1,6 +1,7 @@
 #################################
-## This script is Only Used Once to Load Data From the DB 
-##################################
+## This script is Only Used Once 
+## to Load Data From the DB 
+#################################
 
 
 import pyodbc
