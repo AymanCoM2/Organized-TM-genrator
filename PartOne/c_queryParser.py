@@ -1,9 +1,10 @@
 from decimal import Decimal
 from . import b_headerFooterData
 
+
 def headerFooterParsing(docNumber):
     headerFooterResult = b_headerFooterData.runHeaderFooterQuery(docNumber)
-    hfDict = {}
+    hfDict = {}  # Header Footer Dictionary
     for item in headerFooterResult:
         _, description, company, code, _, start_date, end_date, primary_id, * \
             decimals, status, _ = item
@@ -24,7 +25,7 @@ def headerFooterParsing(docNumber):
 # hfDict['PrimaryID']
     headerList = [
         "", "",
-        "", "TM"+str(docNumber),
+        "", primary_id.replace("Primary", "TM"),
         hfDict['EndDate'], hfDict['StartDate'],
         "", hfDict['Description'],
         hfDict['Code'], hfDict['Company'],
@@ -59,7 +60,14 @@ def headerFooterParsing(docNumber):
 
 def convert_to_rounded_string(value):
     if isinstance(value, Decimal):
-        return str(round(float(value), 1))
+        return str(round(float(value), 2))
+    else:
+        return str(value)
+
+
+def convert_to_int_string(value):
+    if isinstance(value, Decimal):
+        return str(int(value))
     else:
         return str(value)
 
@@ -76,7 +84,7 @@ def rowsParsing(docNumber):
             convert_to_rounded_string(rRow[7]),
             convert_to_rounded_string(
                 rRow[5]) + " " + convert_to_rounded_string(rRow[6]),
-            convert_to_rounded_string(rRow[4]),
+            convert_to_int_string(rRow[4]),
             convert_to_rounded_string(rRow[3]),
             convert_to_rounded_string(rRow[2]),
             convert_to_rounded_string(counter)

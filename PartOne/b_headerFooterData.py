@@ -1,6 +1,7 @@
 import pyodbc
 from . import a_functions_LB
 
+
 def runRowQuery(docNumber):
     rowQuery = a_functions_LB.replaceRowsQuery(str(docNumber))
     conn = pyodbc.connect("Driver={SQL Server};"
