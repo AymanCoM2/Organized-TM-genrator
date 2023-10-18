@@ -1,4 +1,4 @@
-from PartOne import e_mainsCreate, f_merge
+from PartOne import e_mainsCreate, f_merge, q_QR
 from whatsApp import hideEveryThing, openBrowser, openWhatasppLinkAndSendMSG, handleUPload
 import shutil
 
@@ -6,7 +6,8 @@ import shutil
 
 # fileNamesList = e_mainsCreate.createMainsPages(576)
 # 4 pages Nearly
-fileNamesList = e_mainsCreate.createMainsPages(5)
+fName  = q_QR.generateCustomerQRcode(576)
+fileNamesList = e_mainsCreate.createMainsPages(576 ,fName)
 # 1 Page
 finalFileName = f_merge.combineParts(fileNamesList)
 # destination_folder = "C:/Users/BAB AL SAFA/Documents"

@@ -1,10 +1,11 @@
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from . import c_queryParser, g_lastTable
-import os 
+from . import c_queryParser, g_lastPage, q_QR
+import os
 
-def createMainsPages(docNumber):
+
+def createMainsPages(docNumber ,fImageName):
     finalDataList = c_queryParser.rowsParsing(docNumber)
     headerList, footerList = c_queryParser.headerFooterParsing(docNumber)
     chunk_size = 10
@@ -14,7 +15,8 @@ def createMainsPages(docNumber):
 
     for i, chunk in enumerate(data_chunks):
         # document = Document('pt1.docx')
-        document = Document(os.path.join(os.path.dirname(__file__), 'pt1.docx'))
+        document = Document(os.path.join(
+            os.path.dirname(__file__), 'pt1.docx'))
         style = document.styles['Normal']
         font = style.font
         font.name = 'Cascadia Code'
@@ -22,10 +24,10 @@ def createMainsPages(docNumber):
         font.rtl = True
         font.size = Pt(5)
         if len(chunk) < 7 and (i == len(data_chunks) - 1):
-            g_lastTable.createLastTable(docNumber, chunk)
+            g_lastPage.createLastTable(docNumber, chunk,fImageName)
             break
         elif len(chunk) == 10 and (i == len(data_chunks) - 1):
-            g_lastTable.createLastTableEmpty(docNumber)
+            g_lastPage.createLastTableEmpty(docNumber ,fImageName)
             # Dont Break and Let It Continue Creating last Chunck
         elif (len(chunk) >= 7 and len(chunk) < 11) and (i == len(data_chunks) - 1):
             if len(document.tables) > 1:
@@ -55,7 +57,7 @@ def createMainsPages(docNumber):
                     print(
                         "The number of cells in the table does not match the length of headerList.")
 
-            g_lastTable.createLastTableEmpty(docNumber)  # empty
+            g_lastPage.createLastTableEmpty(docNumber ,fImageName)  # empty
             file_name = f'main{i + 1}.docx'
             document.save(file_name)
             file_names.append(file_name)

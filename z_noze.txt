@@ -1,9 +1,0 @@
-QR Code 
-#######################################
-Table is Created 
-Now to get the Data From the other quey and Then 
-Insert the DocNubmer and the Invice is Set as Defualy False 
-and then serch for the Task Scheduling For the Data and Put the Data there 
-#######################################
-title of the invoice 
-الرقم الضريبي ورقم الحساب 

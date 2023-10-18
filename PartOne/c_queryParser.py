@@ -1,9 +1,9 @@
 from decimal import Decimal
-from . import b_headerFooterData
+from . import b_Data_TM
 
 
 def headerFooterParsing(docNumber):
-    headerFooterResult = b_headerFooterData.runHeaderFooterQuery(docNumber)
+    headerFooterResult = b_Data_TM.runHeaderFooterQuery(docNumber)
     hfDict = {}  # Header Footer Dictionary
     for item in headerFooterResult:
         _, description, company, code, _, start_date, end_date, primary_id, * \
@@ -74,7 +74,7 @@ def convert_to_int_string(value):
 
 def rowsParsing(docNumber):
     counter = 1
-    rowResult = b_headerFooterData.runRowQuery(docNumber)
+    rowResult = b_Data_TM.runRowQuery(docNumber)
     finalDataList = []
     for rRow in rowResult:
         internalList = [
