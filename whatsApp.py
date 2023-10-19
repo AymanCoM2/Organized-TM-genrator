@@ -24,13 +24,14 @@ def openBrowser():
     pyautogui.hotkey("win", "up")  # Maximize PAGE
 
 
-def openWhatasppLinkAndSendMSG():
+def openWhatasppLinkAndSendMSG(phoneNumber='01126517150'):
+
     # This Function Opens Whataspp Web To send a Message For a Person
     # It Requires Being Logged in To Whataspp Web && The "RECEIVER NUMBER"
     # instead Of Being Hard-Coded in the Link
     # The Function Will Create / Open Conversation with this Phone Number and Write "File" Word
     time.sleep(4)
-    intndedLink = "https://api.whatsapp.com/send/?phone=%2B201099786999&text=File&type=phone_number&app_absent=1"
+    intndedLink = "https://api.whatsapp.com/send/?phone=%2B201126517150&text=File&type=phone_number&app_absent=1"
     pyperclip.copy(intndedLink)
     pyautogui.hotkey("ctrl", "v")
     time.sleep(2)
@@ -64,6 +65,7 @@ def handleUPload():
     time.sleep(2)
     pyautogui.press('enter')  # ! THIS IS THE SENDING ENTER !!!!
     # Then Close it  & Close the Browser
+    time.sleep(10)
     pyautogui.hotkey("alt", "f4")  # CLOSING WHATASPP desktop
     time.sleep(2)
     pyautogui.hotkey("alt", "f4")  # CLOSING WHATASPP web
