@@ -21,6 +21,7 @@ def generateCustomerQRcode(docNumber):
     cursor.execute(query)
     rowResult = cursor.fetchall()
     data = rowResult[0][1]
+    # return data
     # 0 Of First Index For the List , 1 For second index For the QR Only
 
     # Define a list of sizes and resolutions
