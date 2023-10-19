@@ -2,6 +2,9 @@ import qrcode
 from PIL import Image
 import pyodbc
 # Define the content of the QR code
+import os
+script_directory = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.join(script_directory, "code.png")
 
 
 def generateCustomerQRcode(docNumber):
@@ -37,6 +40,6 @@ def generateCustomerQRcode(docNumber):
 
         img = qr.make_image(fill_color="black", back_color="white")
         img = img.resize((size, size), Image.ANTIALIAS)
-        img.save(f"code.png", dpi=(dpi, dpi))
+        img.save(image_path, dpi=(dpi, dpi))
 
     return 'code.png'
