@@ -2,6 +2,9 @@ from PartOne import e_mainsCreate, f_merge, q_QR
 from whatsApp import hideEveryThing, openBrowser, openWhatasppLinkAndSendMSG, handleUPload
 import shutil
 import sqlite3
+import time
+
+start_time = time.time()
 
 
 def get_first_unprocessed_document(db_file='Schedules.sqlite'):
@@ -73,5 +76,11 @@ openWhatasppLinkAndSendMSG(phoneNumber='01126517150')
 handleUPload()
 # 9- Finally Mark this File as sent to Generate New Invoice For another Customer
 update_invoice_set(nextDocEntry)
-# TODO 
-# ! DELETE the Old sqlite DB and Create new One later 
+# TODO
+# ! DELETE the Old sqlite DB and Create new One later
+
+
+end_time = time.time()
+elapsed_time = end_time - start_time
+elapsed_minutes = elapsed_time / 60
+print(f"Total time taken: {elapsed_minutes:.2f} minutes")
