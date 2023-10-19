@@ -6,8 +6,8 @@ import shutil
 
 # fileNamesList = e_mainsCreate.createMainsPages(576)
 # 4 pages Nearly
-fName  = q_QR.generateCustomerQRcode(34)
-fileNamesList = e_mainsCreate.createMainsPages(34 ,fName)
+fName = q_QR.generateCustomerQRcode(34)
+fileNamesList = e_mainsCreate.createMainsPages(34, fName)
 # 1 Page
 finalFileName = f_merge.combineParts(fileNamesList)
 # destination_folder = "C:/Users/BAB AL SAFA/Documents"
